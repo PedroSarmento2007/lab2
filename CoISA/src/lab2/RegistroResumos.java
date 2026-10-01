@@ -8,6 +8,7 @@ public class RegistroResumos {
     private int proximoIndice;
 
     public RegistroResumos(int numeroDeResumos) {
+        this.numeroDeResumos = numeroDeResumos;
         this.temas = new String[numeroDeResumos];
         this.conteudos = new String[numeroDeResumos];
         this.proximoIndice = 0;
@@ -18,7 +19,9 @@ public class RegistroResumos {
             this.temas[this.proximoIndice] = tema;
             this.conteudos[this.proximoIndice] = conteudo;
             this.proximoIndice++;
-            this.quantidadeAtual++;
+            if (this.quantidadeAtual < this.numeroDeResumos) {
+                this.quantidadeAtual++;
+            }
         }
         if (this.proximoIndice > this.numeroDeResumos - 1) {
             this.proximoIndice = 0;
@@ -52,7 +55,7 @@ public class RegistroResumos {
                 out += " | " + this.temas[i];
             }
         }
-        return "- " + conta() + " resumos(s) cadastrado(s)\n" + out;
+        return "- " + conta() + " resumo(s) cadastrado(s)\n" + out;
     }
 
 }

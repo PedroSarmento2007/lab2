@@ -2,6 +2,8 @@ package lab2;
 import java.util.Arrays;
 
 public class Disciplina {
+    private static final int MEDIA_DE_APROVACAO = 7;
+    private static final int QUANT_NOTAS = 4;
     private String nomeDisciplina;
     private int horasEstudo;
     private double[] notas;
@@ -9,7 +11,7 @@ public class Disciplina {
     public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
         this.horasEstudo = 0;
-        this.notas = new double[4];
+        this.notas = new double[QUANT_NOTAS];
     }
     public void cadastraHoras(int horas) {
         this.horasEstudo += horas;
@@ -22,13 +24,10 @@ public class Disciplina {
         for (double num : notas) {
             acum += num;
         }
-        return acum / 4.0;
+        return acum / QUANT_NOTAS;
     }
     public boolean aprovado() {
-        if (calculaMedia() >= 7) {
-            return true;
-        }
-        return false;
+        return calculaMedia() >= MEDIA_DE_APROVACAO;
     }
     @Override
     public String toString() {
