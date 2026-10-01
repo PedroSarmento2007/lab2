@@ -54,4 +54,5 @@ public class RegistroResumos {
         }
         return "- " + conta() + " resumos(s) cadastrado(s)\n" + out;
     }
+
 }
