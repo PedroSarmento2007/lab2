@@ -7,6 +7,7 @@ public class RegistroTempoOnline {
 
     public RegistroTempoOnline (String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
+        this.tempoOnlineEsperado = 120;
 
     }
     public RegistroTempoOnline (String nomeDisciplina, int tempoOnlineEsperado) {
