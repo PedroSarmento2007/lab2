@@ -1,5 +1,7 @@
 package lab2;
 
+import java.util.Arrays;
+
 public class Coisa {
     public static void main(String[] args) {
         registrarDescanso();
@@ -73,6 +75,7 @@ public class Coisa {
         System.out.println(meusResumos.imprimeResumos());
         System.out.println(meusResumos.temResumo("Classes"));
         System.out.println(meusResumos.temResumo("Objetos"));
+        System.out.println(Arrays.toString(meusResumos.busca("UM")));
     }
 
     private static void controlarDisciplina2() {

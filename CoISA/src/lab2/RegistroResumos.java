@@ -1,5 +1,8 @@
 package lab2;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 /**
  * Registra os resumos de estudo de um aluno. Cada resumo tem um tema e um
  * conteúdo. O registro tem capacidade fixa: quando está cheio, um novo resumo
@@ -45,10 +48,10 @@ public class RegistroResumos {
      * tema, nada é feito. Se o registro estiver cheio, o novo resumo substitui
      * os mais antigos, a partir da primeira posição.
      *
-     * @param tema o tema do resumo
+     * @param tema     o tema do resumo
      * @param conteudo o conteúdo do resumo
      */
-    public void adiciona (String tema, String conteudo) {
+    public void adiciona(String tema, String conteudo) {
         if (!temResumo(tema)) {
             this.resumos[this.proximoIndice] = new Resumo(tema, conteudo);
             this.proximoIndice++;
@@ -109,12 +112,35 @@ public class RegistroResumos {
         for (int i = 0; i < conta(); i++) {
             if (i == 0) {
                 out += this.resumos[i].getTema();
-            }
-            else {
+            } else {
                 out += " | " + this.resumos[i].getTema();
             }
         }
         return "- " + conta() + " resumo(s) cadastrado(s)\n" + out;
     }
 
+    /**
+     * Retorna um array de String em ordem alfabética contendo os temas em que determinada chave de busca se encontra.
+     *
+     * @param chaveBusca É o que será buscado pelos conteúdos dos resumos
+     * @return array de temas em ordem alfabética onde a chave de busca está
+     */
+    public String[] busca(String chaveBusca) {
+        chaveBusca = chaveBusca.toLowerCase();
+        int cont = 0;
+        for (Resumo resumo : this.resumos) {
+            if (resumo != null) {
+                if (resumo.getConteudo().toLowerCase().contains(chaveBusca)) cont++;
+            }
+        }
+        String[] out = new String[cont];
+        int i = 0;
+        for (Resumo resumo : this.resumos) {
+            if (resumo != null) {
+                if (resumo.getConteudo().toLowerCase().contains(chaveBusca)) out[i++] = resumo.getTema();
+            }
+        }
+        Arrays.sort(out);
+        return out;
+    }
 }
