@@ -7,6 +7,7 @@ package lab2;
  * @author Pedro Sarmento
  */
 public class RegistroTempoOnline {
+
     /**
      * Tempo online esperado, em horas, quando nenhum valor é informado.
      */
@@ -15,12 +16,11 @@ public class RegistroTempoOnline {
     /**
      * Nome da disciplina.
      */
-
     private String nomeDisciplina;
+
     /**
      * Tempo online, em horas, que o aluno já dedicou à disciplina.
      */
-
     private int tempoOnlineUsado;
 
     /**
