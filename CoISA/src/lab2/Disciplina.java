@@ -18,7 +18,7 @@ public class Disciplina {
     /**
      * Quantidade de notas da disciplina.
      */
-    private static final int QUANT_NOTAS = 4;
+    private static final int QUANT_NOTAS_PADRAO = 4;
 
     /**
      * Nome da disciplina.
@@ -36,6 +36,11 @@ public class Disciplina {
     private double[] notas;
 
     /**
+     * Pesos das notas em array.
+     */
+    private int[] pesos;
+
+    /**
      * Constrói uma disciplina a partir do nome, sem horas de estudo e com
      * todas as notas iguais a zero.
      *
@@ -44,7 +49,39 @@ public class Disciplina {
     public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
         this.horasEstudo = 0;
-        this.notas = new double[QUANT_NOTAS];
+        this.notas = new double[QUANT_NOTAS_PADRAO];
+        this.pesos= new int[]{1, 1, 1, 1};
+    }
+
+    /**
+     * Constrói uma disciplina a partir do nome, sem horas de estudo e quantidade de
+     * notas dada pelo usuário.
+     *
+     * @param nomeDisciplina o nome da disciplina
+     */
+    public Disciplina(String nomeDisciplina,int quantNotas) {
+        this.nomeDisciplina = nomeDisciplina;
+        this.horasEstudo = 0;
+        this.notas = new double[quantNotas];
+        this.pesos = new int[quantNotas];
+        for (int i = 0; i < quantNotas; i++) {
+            this.pesos[i] = 1;
+        }
+    }
+
+    /**
+     * Constrói uma disciplina a partir do nome, sem horas de estudo, quantidade de
+     * notas dada pelo usuário e pesos.
+     *
+     * @param nomeDisciplina o nome da disciplina
+     */
+    public Disciplina(String nomeDisciplina,int quantNotas, int[] pesos) {
+        this.nomeDisciplina = nomeDisciplina;
+        this.horasEstudo = 0;
+        this.notas = new double[quantNotas];
+        if (pesos != null) {
+            this.pesos = pesos.clone();
+        }
     }
 
     /**
@@ -67,16 +104,18 @@ public class Disciplina {
     }
 
     /**
-     * Calcula a média aritmética das quatro notas.
+     * Calcula a média aritmética ou penderada das notas.
      *
      * @return a média das notas
      */
     public double calculaMedia() {
         double acum = 0;
-        for (double num : notas) {
-            acum += num;
+        double divisor = 0;
+        for (int i = 0; i < notas.length; i++) {
+            acum += notas[i] * pesos[i];
+            divisor += this.pesos[i];
         }
-        return acum / QUANT_NOTAS;
+        return acum / divisor;
     }
 
     /**

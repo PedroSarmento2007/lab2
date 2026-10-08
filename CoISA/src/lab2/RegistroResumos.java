@@ -14,17 +14,16 @@ public class RegistroResumos {
     private int numeroDeResumos;
 
     /**
-     * Temas dos resumos cadastrados.
+     * Array de objetos de Resumo.
      */
-    private String[] temas;
+    private Resumo[] resumos;
+
     /**
-     * Conteúdos dos resumos cadastrados.
+     * Quantidade de resumos atual.
      */
-    private String[] conteudos;
-    /**
-     * Quantidade atual de resumos cadastrados.
-     */
+
     private int quantidadeAtual;
+
     /**
      * Índice do próximo resumo a ser cadastrado.
      */
@@ -38,8 +37,7 @@ public class RegistroResumos {
      */
     public RegistroResumos(int numeroDeResumos) {
         this.numeroDeResumos = numeroDeResumos;
-        this.temas = new String[numeroDeResumos];
-        this.conteudos = new String[numeroDeResumos];
+        this.resumos = new Resumo[numeroDeResumos];
     }
 
     /**
@@ -52,8 +50,7 @@ public class RegistroResumos {
      */
     public void adiciona (String tema, String conteudo) {
         if (!temResumo(tema)) {
-            this.temas[this.proximoIndice] = tema;
-            this.conteudos[this.proximoIndice] = conteudo;
+            this.resumos[this.proximoIndice] = new Resumo(tema, conteudo);
             this.proximoIndice++;
             if (this.quantidadeAtual < this.numeroDeResumos) {
                 this.quantidadeAtual++;
@@ -72,7 +69,7 @@ public class RegistroResumos {
     public String[] pegaResumos() {
         String[] out = new String[conta()];
         for (int i = 0; i < conta(); i++) {
-            out[i] = this.temas[i] + ": " + this.conteudos[i];
+            out[i] = this.resumos[i].toString();
         }
         return out;
     }
@@ -94,7 +91,7 @@ public class RegistroResumos {
      */
     public boolean temResumo(String tema) {
         for (int i = 0; i < conta(); i++) {
-            if (this.temas[i].equals(tema)) {
+            if (this.resumos[i].getTema().equals(tema)) {
                 return true;
             }
         }
@@ -111,10 +108,10 @@ public class RegistroResumos {
         String out = "- ";
         for (int i = 0; i < conta(); i++) {
             if (i == 0) {
-                out += this.temas[i];
+                out += this.resumos[i].getTema();
             }
             else {
-                out += " | " + this.temas[i];
+                out += " | " + this.resumos[i].getTema();
             }
         }
         return "- " + conta() + " resumo(s) cadastrado(s)\n" + out;

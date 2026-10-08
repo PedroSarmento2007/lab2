@@ -9,7 +9,10 @@ public class Coisa {
         controlarDisciplina();
         System.out.println("-----");
         registrarResumos();
+        System.out.println("-----");
+        controlarDisciplina2();
     }
+
     public static void registrarDescanso() {
         Descanso descanso = new Descanso();
         System.out.println(descanso.getStatusGeral());
@@ -23,6 +26,7 @@ public class Coisa {
         descanso.defineNumeroSemanas(1);
         System.out.println(descanso.getStatusGeral());
     }
+
     private static void registrarTempoOnline() {
         RegistroTempoOnline tempoLP2 = new RegistroTempoOnline("LP2", 30);
         tempoLP2.adicionaTempoOnline(10);
@@ -36,6 +40,7 @@ public class Coisa {
         RegistroTempoOnline tempoP2 = new RegistroTempoOnline("P2");
         System.out.println(tempoP2.toString());
     }
+
     private static void controlarDisciplina() {
         Disciplina prog2 = new Disciplina("PROGRAMACAO 2");
         prog2.cadastraHoras(4);
@@ -47,6 +52,7 @@ public class Coisa {
         System.out.println(prog2.aprovado());
         System.out.println(prog2.toString());
     }
+
     private static void registrarResumos() {
         RegistroResumos meusResumos = new RegistroResumos(100);  // 100 resumos
 
@@ -67,5 +73,16 @@ public class Coisa {
         System.out.println(meusResumos.imprimeResumos());
         System.out.println(meusResumos.temResumo("Classes"));
         System.out.println(meusResumos.temResumo("Objetos"));
+    }
+
+    private static void controlarDisciplina2() {
+        int[] pesos = {1,10};
+        Disciplina prog67 = new Disciplina("PROGRAMACAO 67", 2, pesos);
+        prog67.cadastraHoras(4);
+        prog67.cadastraNota(1, 10.0);
+        prog67.cadastraNota(2, 6.0);
+        System.out.println(prog67.aprovado());
+        System.out.println(prog67.aprovado());
+        System.out.println(prog67.toString());
     }
 }
